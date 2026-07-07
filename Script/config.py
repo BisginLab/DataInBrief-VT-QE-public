@@ -10,7 +10,7 @@ def env_path(name: str, default: str | Path) -> Path:
 
 
 def require_env(name: str) -> str:
-    """Read a required secret or setting from the environment."""
+    """Read a required value from the environment."""
     value = os.environ.get(name)
     if not value:
         raise RuntimeError(f"Environment variable {name} is required.")

@@ -29,11 +29,11 @@ Tagged source-code release: <https://github.com/BisginLab/DataInBrief-VT-QE-publ
 | `Script/qk_vt_cs_visualize.py` | Create cross-source contingency heatmaps |
 | `*_columns.txt` | Column dictionaries for released CSV files |
 
-Generated CSVs, JSON responses, figures, checkpoints, pickles, and local credentials are intentionally excluded from source control.
+Generated CSVs, JSON responses, figures, checkpoints, pickles, and local environment files are intentionally excluded from source control.
 
 ## Configuration
 
-Create an environment from `requirements.txt`, then set paths and secrets with environment variables. A template is provided in `.env.example`.
+Create an environment from `requirements.txt`, then set paths and the VirusTotal API key with environment variables. A template is provided in `.env.example`.
 
 ```bash
 python3 -m venv .venv
@@ -95,11 +95,11 @@ python3 Script/qk_vt_cs_visualize.py
 
 Column dictionaries for released CSV files are tracked at the repository root.
 
-## Data in Brief Release Notes
+## Citation and Data Availability
 
-For Data in Brief, publish the dataset in a repository with a persistent identifier and cite both the dataset DOI and a tagged source-code release. After pushing this repository to GitHub, archive the tagged release with Zenodo or another DOI-providing repository. Add the resulting source-code DOI to `CITATION.cff`, and cite the code in the article's Specifications Table/Data Accessibility section and reference list.
+The associated dataset is available through the DOI listed above. This repository provides the source code used to generate the released enrichment tables and validation subsets.
 
-Credentials exposed during earlier development should remain revoked or rotated. This public repository was recreated from the cleaned source tree so that the release history does not contain those credentials.
+The citable source-code version is the tagged release `v1.0.0-dib-source`. If this release is archived through Zenodo or another DOI-providing repository, cite the archived software DOI in the Data in Brief Specifications Table/Data Accessibility section and in the article reference list.
 
 ## Licenses
 
