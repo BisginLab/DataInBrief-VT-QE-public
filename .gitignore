@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+.Python
+
+.env
+.venv/
+venv/
+env/
+
+.DS_Store
+
+# Generated data, figures, checkpoints, and caches
+data/
+outputs/
+figures/
+*.csv
+*.json
+*.pkl
+*.pickle
+*.log
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.zip
+
+# Keep repository metadata and column dictionaries tracked.
+!CITATION.cff
+!LICENSE
+!README.md
+!*_columns.txt

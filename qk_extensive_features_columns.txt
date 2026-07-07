@@ -1,0 +1,16 @@
+COLUMNS IN qk_extensive_features.csv
+==================================================
+Total: 12 columns
+
+  1. md5
+  2. apk_filename
+  3. size_bytes
+  4. threat_level
+  5. total_score
+  6. crimes.rule
+  7. crimes.crime
+  8. crimes.label
+  9. crimes.score
+ 10. crimes.weight
+ 11. crimes.confidence
+ 12. crimes.permissions

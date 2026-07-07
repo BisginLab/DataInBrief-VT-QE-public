@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this source code, cite the repository release and the associated dataset DOI."
+title: "Source code for VirusTotal and Quark-Engine enrichment of an Android application dataset"
+authors:
+  - family-names: "Mohsen"
+    given-names: "Faisal"
+  - family-names: "Zhang"
+    given-names: "Yue"
+  - family-names: "Gultekin"
+    given-names: "Ahmet M."
+  - family-names: "Bisgin"
+    given-names: "Halil"
+  - family-names: "Buchta"
+    given-names: "Kevin"
+repository-code: "https://github.com/BisginLab/DataInBrief-VT-QE"
+license: "CC-BY-4.0"
+keywords:
+  - Android
+  - VirusTotal
+  - Quark-Engine
+  - malware
+  - dataset
+references:
+  - type: dataset
+    title: "Validated and Enriched Android Application Dataset: Integration of VirusTotal and Quark-Engine Intelligence"
+    doi: "10.34894/XV84Z8"
