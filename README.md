@@ -6,7 +6,7 @@ This repository contains the Python source code used to collect VirusTotal metad
 
 Associated dataset DOI: <https://doi.org/10.34894/XV84Z8>
 
-Tagged source-code release: <https://github.com/BisginLab/DataInBrief-VT-QE-public/releases/tag/v1.0.0-dib-source>
+Tagged source-code release: <https://github.com/BisginLab/DataInBrief-VT-QE-public/releases/tag/v1.0.1-dib-source>
 
 ## Repository Contents
 
@@ -33,19 +33,18 @@ Generated CSVs, JSON responses, figures, checkpoints, pickles, and local environ
 
 ## Configuration
 
-Create an environment from `requirements.txt`, then set paths and the VirusTotal API key with environment variables. A template is provided in `.env.example`.
+Create an environment from `requirements.txt`, then set paths and the VirusTotal API key with environment variables. Use `.env.example` as the complete configuration template.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# Set VT_API_KEY in your shell before running the VirusTotal collection script.
-export DIB_DATA_ROOT="/path/to/data"
-export APK_DIR="/path/to/APKs"
-export HASH_FILE="/path/to/hashes.csv"
-export PKG_MAP_FILE="/path/to/md5_hashes.csv"
-export PAPER_FILE="/path/to/corrected_permacts.csv"
+# Edit local paths and, when collecting VirusTotal data, VT_API_KEY.
+cp .env.example .env
+set -a
+source .env
+set +a
 ```
 
 No API keys are stored in this repository. `VT_API_KEY` is required only for VirusTotal collection.
@@ -99,7 +98,7 @@ Column dictionaries for released CSV files are tracked at the repository root.
 
 The associated dataset is available through the DOI listed above. This repository provides the source code used to generate the released enrichment tables and validation subsets.
 
-The citable source-code version is the tagged release `v1.0.0-dib-source`. If this release is archived through Zenodo or another DOI-providing repository, cite the archived software DOI in the Data in Brief Specifications Table/Data Accessibility section and in the article reference list.
+The citable source-code version is the tagged release `v1.0.1-dib-source`. If this release is archived through Zenodo or another DOI-providing repository, cite the archived software DOI in the Data in Brief Specifications Table/Data Accessibility section and in the article reference list.
 
 ## Licenses
 

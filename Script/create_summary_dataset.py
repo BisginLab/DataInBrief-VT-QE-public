@@ -25,13 +25,22 @@ FEATURES = (
 )
 
 
-def parse_cert_date(value: str) -> datetime:
+def parse_cert_date(value: str | None) -> datetime | None:
+    if not isinstance(value, str):
+        return None
+
     for fmt in ("%Y-%m-%d %H:%M:%S", "%I:%M %p %m/%d/%Y"):
         try:
             return datetime.strptime(value, fmt)
         except ValueError:
             continue
-    raise ValueError(f"Unknown certificate date format: {value!r}")
+    return None
+
+
+def certificate_lifetime_days(valid_from: str | None, valid_to: str | None) -> int:
+    start = parse_cert_date(valid_from)
+    end = parse_cert_date(valid_to)
+    return (end - start).days if start and end else -1
 
 
 def preferred_qk_file(qk_file: Path) -> Path:
@@ -67,11 +76,7 @@ def process_pair(args: tuple[tuple[Path, Path], int]) -> tuple[str, list | str]:
         cert = attrs.get("androguard", {}).get("certificate", {})
         valid_from = cert.get("validfrom")
         valid_to = cert.get("validto")
-        certificate_life_days = (
-            (parse_cert_date(valid_to) - parse_cert_date(valid_from)).days
-            if valid_from and valid_to
-            else -1
-        )
+        certificate_life_days = certificate_lifetime_days(valid_from, valid_to)
 
         first_ts = attrs.get("first_submission_date")
         last_ts = attrs.get("last_analysis_date")

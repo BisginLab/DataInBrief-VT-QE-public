@@ -4,6 +4,7 @@ import csv
 import os
 import pickle
 import re
+from collections.abc import Iterable
 from contextlib import contextmanager
 from pathlib import Path
 
@@ -24,6 +25,7 @@ from config import (
 )
 
 PAPER_STATUS_INDEX = 34
+ApkScanJob = tuple[str, str, str]
 
 
 def path2names(paths: set[Path] | list[Path]) -> set[str]:
@@ -179,6 +181,36 @@ def load_apk_files() -> list[str]:
 
     _save_pickle(cache_path, apk_files)
     return apk_files
+
+
+def build_apk_scan_jobs(
+    apk_files: Iterable[str],
+    pkg2hash: dict[str, str],
+    *,
+    allowed_hashes: set[str] | None = None,
+    seen_hashes: set[str] | None = None,
+) -> list[ApkScanJob]:
+    """Resolve APK paths to scan jobs, filtering in the parent process."""
+    seen = seen_hashes or set()
+    queued: set[str] = set()
+    jobs: list[ApkScanJob] = []
+
+    for apk_file in apk_files:
+        apk_path = Path(apk_file)
+        if len(apk_path.parts) != 2 or apk_path.suffix != ".apk":
+            continue
+
+        subfolder = apk_path.parts[0]
+        md5 = pkg2hash.get(apk_path.stem)
+        if not md5 or md5 in seen or md5 in queued:
+            continue
+        if allowed_hashes is not None and md5 not in allowed_hashes:
+            continue
+
+        jobs.append((apk_file, subfolder, md5))
+        queued.add(md5)
+
+    return jobs
 
 
 def load_hash2folder() -> dict[str, str]:

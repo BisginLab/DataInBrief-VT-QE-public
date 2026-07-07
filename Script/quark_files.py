@@ -2,40 +2,19 @@ from __future__ import annotations
 
 import multiprocessing as mp
 import sys
-from pathlib import Path
 
 from config import APK_DIR, QUARK_RULE_DIR, QUARK_SCAN_DIR
 from quark_runner import run_quark_scan
-from utility import load_apk_files, load_pkg2hash
+from utility import ApkScanJob, build_apk_scan_jobs, load_apk_files, load_pkg2hash
 
 CHECKPOINT_FILE = QUARK_SCAN_DIR / "quark_checkpoint.txt"
 TIMEOUT_FILE = QUARK_SCAN_DIR / "quark_timeout.txt"
 ERROR_FILE = QUARK_SCAN_DIR / "quark_error.txt"
 TIMEOUT_SECONDS = 90
 
-pkg2hash: dict[str, str] = {}
-seen: set[str] = set()
 
-
-def _hash_for_apk(apk_file: str) -> tuple[str, str, str] | None:
-    try:
-        subfolder, pkg_name = apk_file.removesuffix(".apk").split("/", 1)
-    except ValueError:
-        return None
-
-    md5 = pkg2hash.get(pkg_name)
-    return (subfolder, pkg_name, md5) if md5 else None
-
-
-def process_apk(apk_file: str) -> tuple[str, str, float] | None:
-    apk_info = _hash_for_apk(apk_file)
-    if apk_info is None:
-        return None
-
-    subfolder, _, md5 = apk_info
-    if md5 in seen:
-        return None
-
+def process_apk(job: ApkScanJob) -> tuple[str, str, float]:
+    apk_file, subfolder, md5 = job
     status, elapsed = run_quark_scan(
         APK_DIR / apk_file,
         QUARK_RULE_DIR,
@@ -47,9 +26,8 @@ def process_apk(apk_file: str) -> tuple[str, str, float] | None:
 
 
 def main() -> None:
-    global pkg2hash, seen
-    pkg2hash = load_pkg2hash()
     seen = set(CHECKPOINT_FILE.read_text().splitlines()) if CHECKPOINT_FILE.exists() else set()
+    jobs = build_apk_scan_jobs(load_apk_files(), load_pkg2hash(), seen_hashes=seen)
 
     QUARK_SCAN_DIR.mkdir(parents=True, exist_ok=True)
     scanned = timeouts = errors = 0
@@ -57,10 +35,7 @@ def main() -> None:
 
     with mp.Pool(processes=workers) as pool:
         try:
-            for result in pool.imap_unordered(process_apk, load_apk_files()):
-                if result is None:
-                    continue
-
+            for result in pool.imap_unordered(process_apk, jobs):
                 md5, status, elapsed = result
                 seen.add(md5)
                 with CHECKPOINT_FILE.open("a") as file:

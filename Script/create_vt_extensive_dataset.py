@@ -10,7 +10,7 @@ from utility import get_all_vt_ai_files, load_json_path_repair
 from config import VT_LIGHTWEIGHT_CSV
 
 OUTPUT_CSV    = VT_LIGHTWEIGHT_CSV
-NUM_PROCESSES =  max(1, os.cpu_count() // 2)
+NUM_PROCESSES = max(1, (os.cpu_count() or 1) // 2)
 
 vt_files = get_all_vt_ai_files()
 
