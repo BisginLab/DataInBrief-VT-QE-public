@@ -6,6 +6,8 @@ This repository contains the Python source code used to collect VirusTotal metad
 
 Associated dataset DOI: <https://doi.org/10.34894/XV84Z8>
 
+Tagged source-code release: <https://github.com/BisginLab/DataInBrief-VT-QE-public/releases/tag/v1.0.0-dib-source>
+
 ## Repository Contents
 
 | Path | Purpose |
@@ -97,7 +99,7 @@ Column dictionaries for released CSV files are tracked at the repository root.
 
 For Data in Brief, publish the dataset in a repository with a persistent identifier and cite both the dataset DOI and a tagged source-code release. After pushing this repository to GitHub, archive the tagged release with Zenodo or another DOI-providing repository. Add the resulting source-code DOI to `CITATION.cff`, and cite the code in the article's Specifications Table/Data Accessibility section and reference list.
 
-Exposed credentials from earlier development history should be revoked and the public release history should be rewritten or recreated from this cleaned tree before submission.
+Credentials exposed during earlier development should remain revoked or rotated. This public repository was recreated from the cleaned source tree so that the release history does not contain those credentials.
 
 ## Licenses
 
