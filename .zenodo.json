@@ -1,0 +1,28 @@
+{
+  "title": "Source code for VirusTotal and Quark-Engine enrichment of an Android application dataset",
+  "upload_type": "software",
+  "description": "Python source code used to collect VirusTotal metadata, run Quark-Engine analysis, merge enrichment features, and create validated Android application dataset subsets for the associated Data in Brief submission.",
+  "license": "MIT",
+  "creators": [
+    {"name": "Mohsen, Faisal"},
+    {"name": "Zhang, Yue"},
+    {"name": "Gultekin, Ahmet M."},
+    {"name": "Bisgin, Halil"},
+    {"name": "Buchta, Kevin"}
+  ],
+  "keywords": [
+    "Android",
+    "VirusTotal",
+    "Quark-Engine",
+    "malware",
+    "dataset"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.34894/XV84Z8",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    }
+  ]
+}

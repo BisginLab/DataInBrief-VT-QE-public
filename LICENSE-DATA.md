@@ -1,0 +1,5 @@
+# Data and Documentation License
+
+The released dataset files, column dictionaries, and non-code documentation are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+License text: https://creativecommons.org/licenses/by/4.0/

@@ -28,5 +28,6 @@ figures/
 # Keep repository metadata and column dictionaries tracked.
 !CITATION.cff
 !LICENSE
+!.zenodo.json
 !README.md
 !*_columns.txt

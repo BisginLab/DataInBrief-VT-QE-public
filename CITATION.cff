@@ -1,6 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this source code, cite the repository release and the associated dataset DOI."
 title: "Source code for VirusTotal and Quark-Engine enrichment of an Android application dataset"
+version: "1.0.0"
 authors:
   - family-names: "Mohsen"
     given-names: "Faisal"
@@ -13,7 +14,7 @@ authors:
   - family-names: "Buchta"
     given-names: "Kevin"
 repository-code: "https://github.com/BisginLab/DataInBrief-VT-QE"
-license: "CC-BY-4.0"
+license: "MIT"
 keywords:
   - Android
   - VirusTotal

@@ -95,10 +95,12 @@ Column dictionaries for released CSV files are tracked at the repository root.
 
 ## Data in Brief Release Notes
 
-For Data in Brief, publish the dataset in a repository with a persistent identifier and cite both the dataset DOI and a tagged source-code release. Before making the GitHub repository public or archiving it, create a sanitized release branch, tag it, and archive the release with Zenodo or another DOI-providing repository. Add the resulting source-code DOI to `CITATION.cff`.
+For Data in Brief, publish the dataset in a repository with a persistent identifier and cite both the dataset DOI and a tagged source-code release. After pushing this repository to GitHub, archive the tagged release with Zenodo or another DOI-providing repository. Add the resulting source-code DOI to `CITATION.cff`, and cite the code in the article's Specifications Table/Data Accessibility section and reference list.
 
 Exposed credentials from earlier development history should be revoked and the public release history should be rewritten or recreated from this cleaned tree before submission.
 
-## License
+## Licenses
 
-CC BY 4.0. See `LICENSE`.
+Source code is released under the MIT License. See `LICENSE`.
+
+Released datasets, column dictionaries, and non-code documentation are released under CC BY 4.0. See `LICENSE-DATA.md`.
